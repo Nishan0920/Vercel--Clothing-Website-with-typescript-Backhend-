@@ -18,4 +18,4 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
 });
 
-module.exports = app;
+export default app
