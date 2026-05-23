@@ -3,19 +3,31 @@ import Database from "./db.js";
 import Data from './Routes/CollectionData.js'
 import cors from 'cors'
 import UserData from './Routes/User.js'
+
 const app = express();
 
-const port = process.env.PORT || 2000;
-Database()
+
 app.use(cors({
   origin: "https://vercel-clothing-website-with-typesc.vercel.app",
   credentials: true
 }));
-app.use(express.json())
-app.use("/api",Data)
-app.use("/api",UserData)
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World!");
+app.use(express.json());
+
+app.use(async (req, res, next) => {
+  try {
+    await Database(); 
+    next();
+  } catch (err) {
+    res.status(500).send("Database connection failed");
+  }
 });
 
-export default app
+
+app.use("/api", Data);
+app.use("/api", UserData);
+
+app.get("/", (req: Request, res: Response) => {
+  res.send("Hello World! Backend is Live.");
+});
+
+export default app;
