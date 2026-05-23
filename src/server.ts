@@ -7,13 +7,15 @@ const app = express();
 
 const port = process.env.PORT || 2000;
 Database()
-app.use(cors())
+app.use(cors({
+  origin: "https://vercel-clothing-website-with-typesc.vercel.app",
+  credentials: true
+}));
 app.use(express.json())
 app.use("/api",Data)
 app.use("/api",UserData)
 app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
 });
-app.listen(port, () => {
-  console.log(`Server running at the ${port} `);
-});
+
+export default app
