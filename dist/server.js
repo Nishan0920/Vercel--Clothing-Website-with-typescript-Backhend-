@@ -8,7 +8,7 @@ const port = process.env.PORT || 2000;
 Database();
 app.use(cors({
     origin: "https://vercel-clothing-website-with-typesc.vercel.app",
-    credentials: true
+    
 }));
 app.use(express.json());
 app.use("/api", Data);
