@@ -1,4 +1,4 @@
-import express, { Request, Response, Router } from "express";
+import express, {  type Request,type Response, Router } from "express";
 import User from "../Modals/User.js";
 import { body, validationResult } from "express-validator";
 import bcrypt from "bcryptjs";
